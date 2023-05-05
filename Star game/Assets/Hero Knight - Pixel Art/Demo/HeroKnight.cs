@@ -109,10 +109,9 @@ public class HeroKnight : MonoBehaviour {
         //Attack
         else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
-           
-            Quaternion direction = gameObject.transform.rotation;
-            Instantiate(laser, new Vector3(transform.position.x, transform.position.y, 0), direction);
-        
+           Debug.Log("Shoot");
+            Quaternion direction = gameObject.transform.rotation * Quaternion.Euler(0, 0, -90*m_facingDirection);;
+            Instantiate(laser, new Vector3(transform.position.x+0.5f*m_facingDirection, transform.position.y, 0), direction);
         }
 
         // Block
