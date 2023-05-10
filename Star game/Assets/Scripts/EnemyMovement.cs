@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     Vector2[] wayPoints;
     int currentTarget = 1;
     Rigidbody2D rb;
-
+    SpriteRenderer _spriteRenderer;
     [SerializeField]
     int speed = 5;
 
@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = changeDirection(currentTarget);
     }
@@ -45,6 +46,11 @@ public class EnemyMovement : MonoBehaviour
             target.y - transform.position.y
         );
         newVelocity.Normalize();
+        if(newVelocity.x < 0 ){
+            _spriteRenderer.flipX = true;
+        } else{
+            _spriteRenderer.flipX = false;
+        }
         return newVelocity * speed;
     }
 
