@@ -6,12 +6,16 @@ public class bullet : MonoBehaviour
 {
     Rigidbody2D rigidbody;
     Collider2D collider;
-    [SerializeField] float lifetime,speed;
+
+    [SerializeField]
+    float lifetime,
+        speed;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        rigidbody.velocity = transform.up * speed ;
+        rigidbody.velocity = transform.up * speed;
         collider = gameObject.GetComponent<Collider2D>();
     }
 
@@ -25,6 +29,17 @@ public class bullet : MonoBehaviour
         lifetime -= Time.deltaTime;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject obj = collision.gameObject;
+        if (obj.tag == "Enemy")
+        {
+            Destroy(obj);
+        }
+        Debug.Log("destroying bullet");
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject obj = collision.gameObject;
@@ -32,6 +47,7 @@ public class bullet : MonoBehaviour
         {
             Destroy(obj);
         }
+        Debug.Log("destroying bullet");
         Destroy(gameObject);
     }
 }
