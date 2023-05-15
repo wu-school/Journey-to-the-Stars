@@ -49,7 +49,7 @@ public class HeroKnight : MonoBehaviour
         item3 = false;
         item4 = false;
         item5 = false;
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
